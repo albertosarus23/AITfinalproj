@@ -31,11 +31,12 @@ Home page contains links to other media sites and contact page
 An Example User:
 
 ```javascript
-{
-  username: "SunXiaoChuan258",
-  emailaddress: // ,
-  comment: // an array of references to List documents
-}
+  const ReviewSchema = new mongoose.Schema({
+    workCommented: String,
+    commentContext: String,
+    time: Number,
+    alias: String
+  });
 ```
 
 
