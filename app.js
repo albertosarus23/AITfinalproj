@@ -9,6 +9,7 @@ const session = require('express-session');
 // const listItem = require('./routes/list-item');
 
 const app = express();
+console.log("server starts");
 
 const publicPath = path.resolve(__dirname, "public");
 app.use(express.static(publicPath));
@@ -40,8 +41,16 @@ app.get('/home',(req,res) => {
   res.render('home');
 });
 
+app.get('/music',(req,res) => {
+  res.render('music');
+});
+
 app.get('/3dmodel',(req,res)=>{
   res.render('3dmodel');
+});
+
+app.get('/csproj',(req,res)=>{
+  res.render('csproj');
 });
 
 app.use('/reviews',userRoutes);

@@ -21,7 +21,9 @@ Home page contains links to other media sites and contact page
   * Papers
 
 * contact page includes
-  * email address
+  * alias
+  * Work to be commented
+  * time commented(System time)
   * context (each email address can only )
   * send button
 
@@ -36,25 +38,11 @@ An Example User:
 }
 ```
 
-An Example List with Embedded Items:
-
-```javascript
-{
-  user: // a reference to a User object
-  emailaddress: // ,
-  name: "LiLaoBa888",
-  comments: [
-    { name: "嗯冲🐛", commentId: 1},
-    { name: "李法王🔥🔥🔥", commentId: 1},
-  ],
-  limit: // if the users with certain vaild email address have met their quota
-}
-```
 
 
 ## [Link to Commented First Draft Schema](db.js) 
 
-(__TODO__: create a first draft of your Schemas in db.js and link to it_)
+![Link](./db.js)
 
 ## Wireframes
 
@@ -76,8 +64,6 @@ An Example List with Embedded Items:
 
 (__TODO__: draw out a site map that shows how pages are related to each other_)
 
-Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia/commons/2/20/Sitemap_google.jpg), but you can create one without the screenshots, drop shadows, etc. ... just names of pages and where they flow to.
-
 ## User Stories or Use Cases
 
 1. as a user, I can browse all the works published by the owner with the site
@@ -90,23 +76,43 @@ Here's a [complex example from wikipedia](https://upload.wikimedia.org/wikipedia
 
 (__TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed_)
 
-* (5 points) Integrate user authentication
-    * I'm going to be using passport for user authentication
-    * And account has been made for testing; I'll email you the password
-    * see <code>cs.nyu.edu/~jversoza/ait-final/register</code> for register page
-    * see <code>cs.nyu.edu/~jversoza/ait-final/login</code> for login page
-* (4 points) Perform client side form validation using a JavaScript library
-    * see <code>cs.nyu.edu/~jversoza/ait-final/my-form</code>
-    * if you put in a number that's greater than 5, an error message will appear in the dom
-* (5 points) vue.js
-    * used vue.js as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
+* (1 points) Configure the more advance use of Github
+  * I'm going to be familiar of deploying Github, understanding how to use
+    * Merge
+    * Pull request
+    * handle version history
+  * And account has been made for testing; I'll email you the password
+* (1 points) Make the website indicate "Secure" instead of insecure
+  * use https instead of http
+* (3 points) Learn web design
+  * understand how to do web design so I can make my website much more nicer
+  * understand the use of CSS and html
+  * learn rendering
+* (3 points) react
+  * used react as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
+* (2 points) Client side form validation
+  * I am going to figure out if the user is just submitting a comment.
+  * Maybe consider using external sources to handle these problem
 
-10 points total out of 8 required points (___TODO__: addtional points will __not__ count for extra credit_)
+10 points total out of 8 required points 
 
 
 ## [Link to Initial Main Project File](app.js) 
 
-(__TODO__: create a skeleton Express application with a package.json, app.js, views folder, etc. ... and link to your initial app.js_)
+/ project root
+* public
+  * Img
+  * stylesheets
+* views
+  * layout.hbs
+  * login.hbs
+  * register.hbs
+  * etc
+* app.js
+* db.js
+* reviewsRoutes.js
+* package.json
+* README.md
 
 ## Annotations / References Used
 
