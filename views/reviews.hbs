@@ -1,0 +1,35 @@
+{{!-- <h1>
+    Filter
+</h1>
+<form method="GET" action="/reviews">
+    <br>
+    workname <input type="number" name ="year">
+    </br>
+    <br>
+    professor <input type="text" name ="professor">
+    </br>
+    <input type="submit">
+</form> --}}
+<table>
+    {{#each data}}
+    <tr>
+        <td>{{ this.workCommented}}</td>
+    </tr>
+    <tr>
+        <td>{{ this.commentContext}}</td>
+    </tr>
+    <tr>
+        <td>{{ this.time}}</td>
+    </tr>
+    <tr>
+        <td>{{ this.alias}}</td>
+    </tr>
+    {{/each}}
+</table>
+{{!-- workCommented: String,
+    commentContext: String,
+    time: Number,
+    alias: String --}}
+<button onclick="window.location.href='/reviews/add';">
+    click here to add some new reviews
+</button>
