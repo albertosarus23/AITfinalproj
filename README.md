@@ -51,15 +51,15 @@ An Example User:
 
 /bio - page for displaying Bio
 
-![Bio](./public/img/Bio.png)
+![Bio](./public/img/WebDesign/Bio.png)
 
 /home - Homepage showing all visible context
 
-![Home](./public/img/Homepage.png)
+![Home](./public/img/WebDesign/Homepage.png)
 
 /comment - page for showing specific shopping list
 
-![Comments](./public/img/Comments.png)
+![Comments](./public/img/WebDesign/Comments.png)
 
 ## Site map
 
