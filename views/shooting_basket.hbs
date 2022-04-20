@@ -1,0 +1,336 @@
+<h2>Shoot the basket!!!</h2>
+<h2><img class="alignnone wp-image-816" style="font-size: 16px;" src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/DSC08405-169x300.jpg" alt="" width="185" height="328" /><img class=" wp-image-814 alignleft" src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/DSC08395-300x169.jpg" alt="" width="334" height="188" /><img class="wp-image-815 aligncenter" style="font-size: 16px;" src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/DSC08394-300x169.jpg" alt="" width="358" height="201" /></h2>
+by Ruixiang (Albert) Han, Haochen (Tony) Yang
+<h3>Concept of the project &amp; inspiration&nbsp;</h3>
+<p class="p1"><span class="s1">This project aims to help more people play basketball with lower conditions and limits. Users can practice shooting just by wearing the devices and shoot in the right form. Although many people can actually play basketball, their shooting form is not correct.</span></p>
+<p class="p1"><span class="s1">Since it is not possible for everyone to practice shooting at anytime they want, we came up with the idea — the shooting helper. We put sensors on the elbow to detect the movement and angle of users shooting. Then once the user start the shooting form, the ball will act correspondingly. The outcome will be like the user is shooting in the real world but the outcome shows in the digital world, like playing 2K in by actually moving their body. </span></p>
+
+<h4>blueprint of our project</h4>
+<h4><img class="alignnone wp-image-788" src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/11/Screen-Shot-2020-11-26-at-4.14.53-PM-300x176.png" alt="" width="428" height="251" /></h4>
+<h2>Developing progress</h2>
+<h3>&nbsp;</h3>
+<h3>Basic Algorithm part</h3>
+How the basketball shoot out? How to simulate it on the processing that ensemble with the natural world in order to give the best user experience? I write an algorithm on processing that can mimic how the ball naturally falls in the real-world following the law of universal gravitation, in which the object was constantly accelerating toward the ground as 9.8-meter square per second.
+
+I wrote a circle class:
+<pre><span style="color: #33997e;">class</span> Circle{<span style="color: #666666;">// definition of the Circle class</span>
+&nbsp;&nbsp;<span style="color: #e2661a;">float</span> x_postion;
+&nbsp;&nbsp;<span style="color: #e2661a;">float</span> y_postion;
+&nbsp;&nbsp;<span style="color: #e2661a;">float</span> x_speed;
+&nbsp;&nbsp;<span style="color: #e2661a;">float</span> y_speed;
+&nbsp;&nbsp;<span style="color: #e2661a;">int</span> radius;
+&nbsp;&nbsp;<span style="color: #e2661a;">float</span> speed;
+&nbsp;&nbsp;<span style="color: #e2661a;">float</span> bouncing_index;
+&nbsp;&nbsp;<span style="color: #e2661a;">color</span> c;
+&nbsp;&nbsp;<span style="color: #666666;">// these are the attributes of the Circle</span>
+&nbsp;&nbsp;Circle(<span style="color: #e2661a;">float</span> x, <span style="color: #e2661a;">float</span> y, <span style="color: #e2661a;">int</span> radius_,<span style="color: #e2661a;">float</span> x_speed_,<span style="color: #e2661a;">float</span> y_speed_){
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #33997e;">this</span>.x_postion = x;
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #33997e;">this</span>.y_postion = y;
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #33997e;">this</span>.radius = radius_;
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #33997e;">this</span>.x_speed = x_speed_;
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #33997e;">this</span>.y_speed = y_speed_;
+&nbsp;&nbsp;&nbsp;&nbsp;bouncing_index&nbsp;=&nbsp;<span style="color: #006699;">random</span>(0,1);
+&nbsp;&nbsp;&nbsp;&nbsp;c=&nbsp;<span style="color: #006699;">color</span>(<span style="color: #006699;">random</span>(125),<span style="color: #006699;">random</span>(125),<span style="color: #006699;">random</span>(125),<span style="color: #006699;">random</span>(100));
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #666666;">// this is the constructor of the class</span>
+&nbsp;&nbsp;}
+}
+
+</pre>
+and I define a function called natural_fall() :
+<pre>&nbsp;&nbsp;<span style="color: #33997e;">void</span> naturalfall(){
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #666666;">//int timeelapse = 0;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #e2661a;">Boolean</span> istill = <span style="color: #33997e;">false</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #e2661a;">float</span> current_speed = <span style="color: #33997e;">this</span>.y_speed;
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #006699;">circle</span>(x_postion, y_postion, radius);
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;current_speed&nbsp;+=&nbsp;gravity;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #33997e;">this</span>.y_speed = current_speed;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y_postion&nbsp;+=&nbsp;<span style="color: #33997e;">this</span>.y_speed;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x_postion&nbsp;+=&nbsp;<span style="color: #33997e;">this</span>.x_speed;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;timeelapse+=1;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #669900;">if</span>(y_postion&gt;<span style="color: #d94a7a;">height</span>||y_postion&lt;0){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #33997e;">this</span>.y_speed = - <span style="color: #33997e;">this</span>.y_speed; <span style="color: #666666;">//if the circle has touched the ceiling/floor of the canvas, change the direction</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #666666;">//timeelapse = 0;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #669900;">if</span>(x_postion&gt;<span style="color: #d94a7a;">width</span>||x_postion&lt;0){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #33997e;">this</span>.x_speed = - <span style="color: #33997e;">this</span>.x_speed; <span style="color: #666666;">//if the circle has touched the right-most or the left-most part of the canvas, change the direction </span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #666666;">//timeelapse = 0;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #669900;">if</span>(<span style="color: #006699;">abs</span>(y_speed)&lt;0.5){
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;istill&nbsp;=&nbsp;<span style="color: #33997e;">true</span>;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+&nbsp;&nbsp;&nbsp;&nbsp;}
+
+</pre>
+What it does is to add constantly changing the speed of y---by adding the acceleration on the y-speed.
+
+[video width="544" height="960" mp4="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/1608626418480063.mp4"][/video]
+
+Then thing becomes easy: if we pass the initial speed on y speed, and initial speed on x, we can mimic the basketball being shoot in the real world. Also, if the ball has hit the wall, the according x_speed, and y_speed will change to a different direction, as it could mimic the "bouncing effect"
+
+However, we need to add a basketball image on the circle. So I initialize a child class of circle: Basketball class. In this class, I pasted the image of a basketball on the circle object according to the radius and position of the circle.<img class="alignleft size-full wp-image-824" src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/Screen-Shot-2020-12-22-at-5.00.49-PM.png" alt="" width="1006" height="288" />
+<h3>&nbsp;</h3>
+<h3>&nbsp;</h3>
+&nbsp;
+
+&nbsp;
+
+adding a picture of the basketball court as background, the general setup of this project is finished:
+<pre><span style="color: #33997e;">void</span> <span style="color: #006699;"><b>setup</b></span>(){
+&nbsp;&nbsp;<span style="color: #006699;">size</span>(1284,716);
+&nbsp;&nbsp;<span style="color: #006699;">frameRate</span>(60);
+&nbsp;&nbsp;court_img&nbsp;=&nbsp;<span style="color: #006699;">loadImage</span>(<span style="color: #7d4793;">"court2.jpg"</span>);
+&nbsp;&nbsp;<span style="color: #006699;">background</span>(court_img);
+&nbsp;&nbsp;<span style="color: #666666;">//frameRate(30);</span>
+&nbsp;&nbsp;basketball_img=<span style="color: #006699;">loadImage</span>(<span style="color: #7d4793;">"s-l1600.png"</span>);
+&nbsp;&nbsp;<span style="color: #006699;">imageMode</span>(<span style="color: #718a62;">CENTER</span>);
+&nbsp;&nbsp;<span style="color: #666666;">//set up of the canvas &amp; background color</span>
+&nbsp;&nbsp;<span style="color: #666666;">//passing values to the parameters</span>
+&nbsp;&nbsp;
+&nbsp;&nbsp;initialize_basketball(0.6,<span style="color: #006699;">random</span>(40,60),400,100,100,-60);
+&nbsp;&nbsp;setupSerial();
+}
+
+</pre>
+<img class="alignleft size-full wp-image-825" src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/361608628639_.pic_.jpg" alt="" width="1170" height="1134" />
+<h3>&nbsp;</h3>
+<h3>&nbsp;</h3>
+<h3>Bluetooth part</h3>
+<h4>introduction of HC-05, the Bluetooth module</h4>
+The first step for this project is to let it wireless--- it will be very difficult for the users to shoot the basketball while having a bunch of wire attached to their arms, not only the general project will be appearance less-attractive, but also will be less user-unfriendly.
+
+The module I use to make it wireless is Bluetooth-module, HC-05, to communicate the Computer and the Arduino board. What it does is sending data from the Arduino to the shared Serial, and the computer is then reading data from the Serial.
+
+<img class="alignleft size-full wp-image-818" src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/321608624255_.pic_.jpg" alt="" width="1440" height="1080" />
+
+testing the HC-05 Module
+
+&nbsp;
+<h4>Connection of HC-05 with the Arduino &amp; computer</h4>
+The configuration is one of the hardest parts of this project. I figured out with doing a lot of research on the website. After downloading the related library of HC-05, I did successfully transfer data from the computer and Arduino.
+
+There are six ports on the HC-05, they are
+<ul>
+ 	<li style="list-style-type: none;">
+<ul>
+ 	<li>Status(not used)</li>
+ 	<li>RXD(connected to the TXD port)</li>
+ 	<li>TXD(connected to the RXD port)</li>
+ 	<li>GND(connected to the ground)</li>
+</ul>
+</li>
+</ul>
+<ul>
+ 	<li>VCC(connected to the 5V port)</li>
+ 	<li>En(not used)</li>
+</ul>
+&nbsp;
+
+<img class="alignleft size-full wp-image-820" src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/Screen-Shot-2020-12-22-at-4.14.25-PM.png" alt="" width="1568" height="602" />
+
+reference:<a href="https://howtomechatronics.com/tutorials/arduino/arduino-and-hc-05-bluetooth-module-tutorial/">https://howtomechatronics.com/tutorials/arduino/arduino-and-hc-05-bluetooth-module-tutorial/</a>
+
+After setting up the module, the device name could be detected on my computer, named RUI(I changed the name for convenience, otherwise it will be a series of hex number like 2A3B4D5, which is hard to recognize)
+
+<img class="alignnone size-medium wp-image-821" src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/Screen-Shot-2020-12-22-at-4.28.36-PM-300x140.png" alt="" width="300" height="140" />
+<h4>Coding part</h4>
+<pre><span style="color: #00979c;">void</span> <span style="color: #5e6d03;">setup</span><span style="color: #000000;">(</span><span style="color: #000000;">)</span> <span style="color: #000000;">{</span>
+ &nbsp;<span style="color: #434f54;">// Open serial communications and wait for port to open:</span>
+ &nbsp;<b><span style="color: #d35400;">Serial</span></b><span style="color: #434f54;">.</span><span style="color: #d35400;">begin</span><span style="color: #000000;">(</span><span style="color: #000000;">9600</span><span style="color: #000000;">)</span><span style="color: #000000;">;</span>
+ &nbsp;<span style="color: #000000;">setup_data</span><span style="color: #000000;">(</span><span style="color: #000000;">)</span><span style="color: #000000;">;</span>
+ &nbsp;<span style="color: #5e6d03;">while</span> <span style="color: #000000;">(</span><span style="color: #434f54;">!</span><b><span style="color: #d35400;">Serial</span></b><span style="color: #000000;">)</span> <span style="color: #000000;">{</span>
+ &nbsp;&nbsp;&nbsp;<span style="color: #000000;">;</span> <span style="color: #434f54;">// wait for serial port to connect. Needed for native USB port only</span>
+ &nbsp;<span style="color: #000000;">}</span>
+ &nbsp;<span style="color: #434f54;">//Serial.println("Goodnight moon!");</span>
+ &nbsp;<span style="color: #434f54;">// set the data rate for the SoftwareSerial port</span>
+ &nbsp;<span style="color: #000000;">mySerial</span><span style="color: #434f54;">.</span><span style="color: #d35400;">begin</span><span style="color: #000000;">(</span><span style="color: #000000;">9600</span><span style="color: #000000;">)</span><span style="color: #000000;">;</span>
+ &nbsp;<span style="color: #434f54;">//mySerial.println("Hello, world?");</span>
+<span style="color: #000000;">}</span></pre>
+Finally, we successfully connect it with the computer, and it could communicate the Arduino with the computer through Serial:
+
+<img class="alignleft size-full wp-image-819" src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/331608624783_.pic_.jpg" alt="" width="2337" height="1080" />
+
+data collected from Arduino board shown on Serial
+<h3>Sensors part:</h3>
+Two sensors are used for this project. They are flex sensors (4.5 inches)and accelerometers(ADXL345).
+<h4>Flex sensor:</h4>
+<img src="https://cdn.sparkfun.com//assets/parts/1/6/8/6/08606-03-L.jpg" alt="Flex Sensor 4.5&quot; - SEN-08606 - SparkFun Electronics" />
+
+And how it connected with the Arduino board
+
+<img src="https://bildr.org/blog/wp-content/uploads/2012/11/flex-sensor-arduino.png" alt="bildr » Sensing A Bend With A Flex Sensor + Arduino" />
+
+The basic concept of the flex sensors is to detect the change of the resistor's resistance. Depending on different bending degrees, the resistance will change according to how drastically the sensor is bent. We can then reversely detect the bending angle through the resistance reading.
+<p class="p1"><span class="s1">The flex sensor can detect if the user bends their arms, and the accelerometer can show how fast the arms swing is so that the ball can fly according to the data. We welded the flex sensor with longer wires, also welded the accelerometer with a 22k resistor and wires.</span></p>
+If the flex sensor was straight, the reading value should be around 20, otherwise, if the flex sensor was bend, the reading value will be increased to a value greater than 20.
+<pre><span style="color: #e2661a;">String</span> From_Arduino(<span style="color: #e2661a;">int</span> from_ardui){
+&nbsp;<span style="color: #669900;">if</span>(from_ardui&gt;20){
+&nbsp;&nbsp;&nbsp;<span style="color: #33997e;">return</span> <span style="color: #7d4793;">"straight"</span>;
+&nbsp;}
+&nbsp;<span style="color: #669900;">else</span>{
+&nbsp;&nbsp;&nbsp;<span style="color: #33997e;">return</span> <span style="color: #7d4793;">"bend"</span>;
+&nbsp;}
+}
+
+</pre>
+I then set up a variable to detect if the status of the flex sensor is change---does it change from bend to straight, or vice versa?
+
+Through my observation of how people shooting a basketball---the arm was first straight, then it was bent to a certain shooting position, finally, it released to straight and the ball was shot. If we simplify the process: the status of the arm changed from straight to bend, and then from bend to straight.
+
+Thus I set up a variable called "previous_status", as its name illustrates, the variable holds and stores the value of the previous status of the arm. And if the arm status has changed and it also satisfies both conditions: "changing from bend to straight" or "changing from straight to bend", it can tell that the ball is shot.
+<pre><span style="color: #33997e;">void</span> check_is_shoot(){
+&nbsp;&nbsp;<span style="color: #669900;">if</span> (is_from_straight_to_bend==<span style="color: #33997e;">true</span>&amp;&amp;is_from_bend_to_straight==<span style="color: #33997e;">true</span>){
+&nbsp;&nbsp;&nbsp;&nbsp;is_shoot&nbsp;=&nbsp;<span style="color: #33997e;">true</span>;
+&nbsp;&nbsp;}
+}
+<span style="color: #33997e;">void</span> from_straight_to_bend(<span style="color: #e2661a;">String</span> input){
+&nbsp;&nbsp;<span style="color: #669900;">if</span> (previous.<span style="color: #006699;">equals</span>(<span style="color: #7d4793;">"straight"</span>)&amp;&amp;input.<span style="color: #006699;">equals</span>(<span style="color: #7d4793;">"bend"</span>)){
+&nbsp;&nbsp;&nbsp;&nbsp;is_from_straight_to_bend&nbsp;=&nbsp;<span style="color: #33997e;">true</span>;
+&nbsp;&nbsp;}
+}
+
+<span style="color: #33997e;">void</span> from_bend_to_straight(<span style="color: #e2661a;">String</span> input){
+&nbsp;&nbsp;<span style="color: #669900;">if</span> (previous.<span style="color: #006699;">equals</span>(<span style="color: #7d4793;">"bend"</span>)&amp;&amp;input.<span style="color: #006699;">equals</span>(<span style="color: #7d4793;">"straight"</span>)){
+&nbsp;&nbsp;&nbsp;&nbsp;is_from_bend_to_straight&nbsp;=&nbsp;<span style="color: #33997e;">true</span>;
+&nbsp;&nbsp;}
+}
+
+</pre>
+Testing video:
+
+[video width="960" height="544" mp4="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/1608624569401977.mp4"][/video]
+<h3>&nbsp;</h3>
+<h3>Accelerometer</h3>
+<img src="https://i.ytimg.com/vi/HM_Vj8weu4I/maxresdefault.jpg" alt="Arduino #13 - 3 axis Accelerometer ADXL 345 - Robots, Quadcopters, etc. - YouTube" />
+
+this sensor could tell us exactly how drastically the user has thrown the basketball. We use it to implement better user-computer interaction.
+
+Code for connection:
+<pre><span style="color: #00979c;">void</span> <span style="color: #000000;">acc</span><span style="color: #000000;">(</span><span style="color: #000000;">)</span><span style="color: #000000;">{</span>
+ &nbsp;&nbsp;&nbsp;<span style="color: #434f54;">// Accelerometer Readings</span>
+ &nbsp;<span style="color: #00979c;">int</span> <span style="color: #000000;">x</span><span style="color: #434f54;">,</span><span style="color: #000000;">y</span><span style="color: #434f54;">,</span><span style="color: #000000;">z</span><span style="color: #000000;">;</span> &nbsp;&nbsp;
+ &nbsp;<span style="color: #000000;">adxl</span><span style="color: #434f54;">.</span><span style="color: #000000;">readAccel</span><span style="color: #000000;">(</span><span style="color: #434f54;">&amp;</span><span style="color: #000000;">x</span><span style="color: #434f54;">,</span> <span style="color: #434f54;">&amp;</span><span style="color: #000000;">y</span><span style="color: #434f54;">,</span> <span style="color: #434f54;">&amp;</span><span style="color: #000000;">z</span><span style="color: #000000;">)</span><span style="color: #000000;">;</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #434f54;">// Read the accelerometer values and store them in variables declared above x,y,z</span>
+ &nbsp;<span style="color: #000000;">x</span> <span style="color: #434f54;">=</span> <span style="color: #d35400;">abs</span><span style="color: #000000;">(</span><span style="color: #000000;">x</span><span style="color: #000000;">)</span><span style="color: #000000;">;</span>
+ &nbsp;<span style="color: #000000;">y</span> <span style="color: #434f54;">=</span> <span style="color: #d35400;">abs</span><span style="color: #000000;">(</span><span style="color: #000000;">y</span><span style="color: #000000;">)</span><span style="color: #000000;">;</span>
+ &nbsp;<span style="color: #00979c;">int</span> <span style="color: #000000;">momentum_this</span><span style="color: #000000;">;</span>
+ &nbsp;<span style="color: #00979c;">int</span> <span style="color: #000000;">momentum</span><span style="color: #000000;">;</span>
+ &nbsp;<span style="color: #000000;">momentum_this</span> <span style="color: #434f54;">=</span> <span style="color: #d35400;">sqrt</span><span style="color: #000000;">(</span><span style="color: #d35400;">pow</span><span style="color: #000000;">(</span><span style="color: #000000;">x</span><span style="color: #434f54;">,</span><span style="color: #000000;">2</span><span style="color: #000000;">)</span><span style="color: #434f54;">+</span><span style="color: #d35400;">pow</span><span style="color: #000000;">(</span><span style="color: #000000;">y</span><span style="color: #434f54;">,</span><span style="color: #000000;">2</span><span style="color: #000000;">)</span><span style="color: #000000;">)</span><span style="color: #000000;">;</span>
+ &nbsp;<span style="color: #000000;">momentum</span> <span style="color: #434f54;">=</span> <span style="color: #000000;">momentum_this</span><span style="color: #434f54;">-</span><span style="color: #000000;">previous</span><span style="color: #000000;">;</span>
+ &nbsp;<span style="color: #5e6d03;">if</span><span style="color: #000000;">(</span><span style="color: #000000;">sent</span><span style="color: #434f54;">==</span><span style="color: #00979c;">false</span><span style="color: #000000;">)</span><span style="color: #000000;">{</span>
+ &nbsp;&nbsp;&nbsp;<span style="color: #000000;">sent</span> <span style="color: #434f54;">=</span> <span style="color: #00979c;">true</span><span style="color: #000000;">;</span>
+ &nbsp;<span style="color: #000000;">}</span>
+
+</pre>
+&nbsp;
+
+It turned out that it is unnecessary to use the data collected from the x,y,z three-axis. Our project was two-dimensional, so there is no need to collect the data from the acceleration from the z-axis.
+
+SO I decided to collect the momentum. Since the speed on the x-axis and y-axis are fixed, and I just need the acceleration in one direction only. To quantize the force applied, I use this algorithm: <span style="color: #000000;">momentum_this</span> <span style="color: #434f54;">=</span> <span style="color: #d35400;">sqrt</span><span style="color: #000000;">(</span><span style="color: #d35400;">pow</span><span style="color: #000000;">(</span><span style="color: #000000;">x</span><span style="color: #434f54;">,</span><span style="color: #000000;">2</span><span style="color: #000000;">)</span><span style="color: #434f54;">+</span><span style="color: #d35400;">pow</span><span style="color: #000000;">(</span><span style="color: #000000;">y</span><span style="color: #434f54;">,</span><span style="color: #000000;">2</span><span style="color: #000000;">)</span><span style="color: #000000;">)&nbsp;</span>
+<h4>User Testing feedback:</h4>
+For our project, we only have a basic prototype on the user testing day. But it was also a good chance to continue modifying it by having others’ suggestions. The first and the most suggestion we got is that we need to make our project more firm so that it won’t fall from the user’s arm. Also, we need to add a different sensor to measure the momentum of the arm so that the swing of arm can participate in the game. Andy suggested us to use joint knuckles for the sensors so that the user can put the sensor easily. Additionally, we can put different sensor on different knuckles to measure values. This is the most important suggestion we got since it improved the interactive experience a lot. Users felt more convenient to put the device on, and it helped us to get more data than before. The most successful part of the project is that it achieved the connection between the human movement the digital visualization. The least successful part is that it was limited by the hardware so that users can only shoot instead of input more detail movement.&nbsp;
+<h3>Combinations:</h3>
+<p class="p1"><span class="s1">We firstly tried the glove. But the glove is not stable for the Arduino board to keep on it, and as mentioned before, it is not easy for user to wear the glove, especially during the winter time when everyone wear themselves like a bear. Then we tried to make a shoulder knuckle to keep the batteries and the Arduino board on the shoulder. We used the sewing machine to sew bandage on the shoulder piece. Also, we used the buckles for close the bandage. But it is not easy as we thought. The shoulder knuckle cannot hold the weight of the batteries, and the knuckle is not stable once we put things on it, so it will fall down easily even though user wear it tight. So that we change the device to the easiest version—use the elbow knuckles and connect the Arduino board and batteries by glue and wrap by ropes.&nbsp;</span></p>
+<img class="alignleft size-full wp-image-827" src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/371608631795_.pic_.jpg" alt="" width="1080" height="1440" />
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+<p class="p1"><span class="s1">With the snap button, the battery and Arduino part could be lock on the upper arm. Then with the joint knuckles, we put the sensors under the stickers and lock it when sticking the knuckle so that the elbow part can connect with the battery part as one. The result is that the device looks so cyberpunk style. </span></p>
+<span class="s1"><img class="alignleft size-full wp-image-828" src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/381608631796_.pic_.jpg" alt="" width="1080" height="1440" /></span>
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+<h2>&nbsp;</h2>
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+<h2>Outcome</h2>
+<img class="alignleft size-full wp-image-829" src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/391608632109_.pic_.jpg" alt="" width="1920" height="1080" /><img class="alignleft size-full wp-image-829" src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/391608632109_.pic_.jpg" alt="" width="1920" height="1080" />
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+<img class="alignleft size-full wp-image-830" src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/Screen-Shot-2020-12-22-at-2.50.46-PM.png" alt="" width="1972" height="1328" />
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
