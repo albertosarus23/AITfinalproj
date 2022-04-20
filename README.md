@@ -89,8 +89,9 @@ An Example User:
   * understand how to do web design so I can make my website much more nicer
   * understand the use of CSS and html
   * learn rendering
-* (3 points) react
-  * used react as the frontend framework; it's a challenging library to learn, so I've assigned it 5 points
+* (3 points) GSAP for possible website animation
+  * plain website is alwasys boring, so I would like to do some research on how to make it live with real-time effect
+  * reference https://www.youtube.com/watch?v=sN93DRYkCO8
 * (2 points) Client side form validation
   * I am going to figure out if the user is just submitting a comment.
   * Maybe consider using external sources to handle these problem

@@ -25,13 +25,11 @@ const sessionOptions = {
 	resave: false 
 };
 app.use(session(sessionOptions));
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(express.urlencoded({ extended: false }));
-
-const userRoutes = require('./reviewsRoutes.js');
+const userRoutes = require('./routers/reviewsRoutes.js');
+const imaRoutes = require('./routers/imaRoutes.js');
 
 app.get('/',(req,res) => {
     res.redirect('/home');
@@ -39,6 +37,14 @@ app.get('/',(req,res) => {
 
 app.get('/home',(req,res) => {
   res.render('home');
+});
+
+app.get('/auhtor',(req,res) => {
+  res.render('author');
+});
+
+app.get('/photo',(req,res) => {
+  res.render('pics');
 });
 
 app.get('/music',(req,res) => {
@@ -54,5 +60,7 @@ app.get('/csproj',(req,res)=>{
 });
 
 app.use('/reviews',userRoutes);
+
+app.use('/ima',imaRoutes);
 
 app.listen(process.env.PORT || 3000);
