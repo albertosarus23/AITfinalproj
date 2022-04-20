@@ -15,7 +15,21 @@
         <img class="alignnone wp-image-816" style="font-size: 16px;" 
         src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/DSC08405-169x300.jpg" alt="" width="185" height="328" />
     </a>
-    <button onclick="window.location.href='/ima/add';">
-    click here to write reviews on my ima project!
-    </button>
+    <div id="show the comments">
+        <table>
+            {{#each data}}
+            <tr>
+                <td>{{ this.commentContext}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    <div id="ima_form">
+        <form method="POST" action="">
+        <br>
+            Write anything: <input type="text" name ="commentContext", value="" class="quick">
+        </br>
+            <input type="submit">
+        </form>
+    </div>
 </body>

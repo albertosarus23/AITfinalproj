@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 // is the environment variable, NODE_ENV, set to PRODUCTION? 
 let dbconf;
 if (process.env.NODE_ENV === 'PRODUCTION') {
@@ -17,18 +18,18 @@ if (process.env.NODE_ENV === 'PRODUCTION') {
  dbconf = 'mongodb://localhost/finalproj';
 }
 
-const mongoose = require('mongoose'),
-	URLSlugs = require('mongoose-url-slugs'),
-  passportLocalMongoose = require('passport-local-mongoose');
+const ReviewSchema = new mongoose.Schema({
+  workCommented: String,
+  commentContext: String,
+  time: Number,
+  alias: String
+});
 
-
-  const ReviewSchema = new mongoose.Schema({
-    workCommented: String,
-    commentContext: String,
-    time: Number,
-    alias: String
-  });
+// const QuickCommentSchema = new mongoose.Schema({
+//   QuickComment: String
+// });
   // db.reviews.insert({ workCommented: "Movementpractice", commentContext: "Like a shit", semester: "Fall", year: 2015, professor: "McTeacherson", review: "Now I can sort like pro!" });
 mongoose.model('Review', ReviewSchema);
+//mongoose.model('QuickReview', QuickCommentSchema);
 
 mongoose.connect(dbconf);

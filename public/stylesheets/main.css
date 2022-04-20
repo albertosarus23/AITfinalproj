@@ -42,10 +42,14 @@ ul {
 	margin: 4px 2px;
 	cursor: pointer;
 	}
-	input[type=text]{
-	height :200px;
-	width : 200px;
-	}
+form  { display: table;      }
+p     { display: table-row;  }
+label { display: table-cell; }
+input { display: table-cell; }
+input.quick{
+height :50px;
+width : 200px;
+}
 	body{
 		background-color:antiquewhite;
 	}

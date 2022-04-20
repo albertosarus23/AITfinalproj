@@ -20,18 +20,6 @@ router.get('/', (req, res) => {
             queryObj['workCommented']=req.query.workCommented;
         }
     }
-
-    if(Object.hasOwnProperty.call(req.query,'commentContext')){
-        if(req.query.commentContext!==''){
-            queryObj['commentContext']=req.query.commentContext;
-        }
-    }
-
-    //     workCommented: String,
-    //     commentContext: String,
-    //     commentId: String,
-    //     time: Number,
-    //     alias: String
     Review.find(queryObj,function(err,display = review,count){
         const data = display.map( r =>{
             return {
