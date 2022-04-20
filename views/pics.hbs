@@ -1,0 +1,57 @@
+<style>
+    .wrapper {
+        height: 820px;
+        width: 1260px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 400px 400px;
+        gap: 10px;
+        {{!-- background-color: #548ac0; --}}
+    }
+    .box{
+        height: 400px;
+        width: 400px;
+        background-color: black;
+        display: flex;
+        justify-content: center;
+    }
+    .box:hover{
+        background-color: whitesmoke;
+    }
+    header{
+        background-color: gainsboro;
+    }
+</style>
+<header>
+    <h1>photos have power</h1>
+    <h3>here are some photography that I took all around the world <br>
+        I believe photos are way to tell a story <br>
+        a good photographer can use his/her works to express what he thinks <br>
+    </h3>
+    <h4>
+        camera📷 I use: SONY A7MIII  Nikon F2  iPhone 12 pro
+    </h4>
+</header>
+<body>
+    <script src="javascripts/photos.js"></script>
+    <div class="wrapper">
+    <div class="box">
+        <img src="/img/Photos/pic1.jpeg" width="280" height="400">
+    </div>
+    <div class="box">
+        <img src="/img/Photos/pic3.jpeg" width="400" height="300">
+    </div>
+    <div class="box">
+        <img src="/img/Photos/pic2.jpeg" width="280" height="400">
+    </div>
+    <div class="box">
+        <img src="/img/Photos/pic4.jpeg" width="400" height="240">
+    </div>
+    <div class="box">
+        <img src="/img/Photos/pic5.jpeg" width="400" height="250">
+    </div>
+    <div class="box">
+        <img src="/img/Photos/pic8.jpeg" width="400" height="300">
+    </div>
+</div>   
+</body>
