@@ -8,6 +8,10 @@ router.get('/', (req, res) => {
     res.render('ima');
 });
 
+router.get('/shooting_basket', (req, res) => {
+    res.render('shooting_basket');
+});
+
 router.get('/add',(req,res) => {
     res.render('add');
 });
@@ -25,11 +29,4 @@ router.post('/add', (req, res) => {
         res.redirect('/reviews');
     });
 });
-
-router.get('/mine', async (req, res) => {
-    req.session.myreviews = await Review.find({}).exec();
-    //const currobj = req.session[reviews];
-    res.render('filter',{data:req.session.myreviews});
-});
-
 module.exports = router;
