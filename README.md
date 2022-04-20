@@ -45,6 +45,15 @@ An Example User:
 
 ![Link](./db.js)
 
+
+## Ajax features
+click to the music section.
+click the empty area near the pictures I upload.
+Once clicked, the introduction on corresponding pictures will be shown and a text 
+will appear.
+Click once agian, the text will disappear.
+![Link](./public/javascripts/photos.js)
+
 ## Wireframes
 
 (__TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc._)
