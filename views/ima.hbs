@@ -1,33 +1,60 @@
+<style>
+    header{
+        background-color: gainsboro;
+    }
+    h3{
+         background-color: gainsboro;
+    }
+</style>
 <header>
     <h1>Interactive Media arts! Yessssss!</h1>
 </header>
+
 <body>
+    Interactive media art is what I really love. <br>
+    I think it is the new format of art of the current era <br>
+    I spent significant time on it and most of my proud works belongs to this category.
+    I was pride of what I have done
     <h3>
-        even though I was not major in IMA(I hope I was),<br>
-        I spent significant time on it and most of my proud works belongs to this category.
-        I was pride of what I have done
+        Here are some projects that I have done:
     </h3>
-    Here are some projects that I have done:
     <h4>
         Shoot the basket, an human-computer interaction project
     </h4>
-    <a href="ima/shooting_basket">
-        <img class="alignnone wp-image-816" style="font-size: 16px;" 
-        src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/DSC08405-169x300.jpg" alt="" width="185" height="328" />
-    </a>
+    <div id='shooting_basket'>
+        <a href="ima/shooting_basket">
+            <img class="alignnone wp-image-816" style="font-size: 16px;" 
+            src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/DSC08405-169x300.jpg" alt="" width="185" height="328" />
+        </a>
+    </div>
+    <div id='moving_step'>
+
+    </div>
+    <div>
+
+    </div>
+
+    <br>
+    <h3>
+        comments
+    </h3>
     <div id="show the comments">
         <table>
             {{#each data}}
             <tr>
-                <td>{{ this.commentContext}}</td>
+                <td>{{ this.quickComment}}</td>
             </tr>
             {{/each}}
         </table>
     </div>
+
+    <h3>
+        leave your comments
+    </h3>
     <div id="ima_form">
         <form method="POST" action="">
         <br>
-            Write anything: <input type="text" name ="commentContext", value="" class="quick">
+            Write anything: <input type="text" name ="quickComment", value="" class="quick">
         </br>
             <input type="submit">
         </form>

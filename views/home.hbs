@@ -2,21 +2,16 @@
     #mylist {
         width: 40em;
         height: 15em;
-        background: #3399ff;
+        background: gainsboro;;
         display: inline-block;
     }
     #mylist ol{
-        background: #548ac0;
+        background: none;
         padding: 20px;
     }
 
-    #mylist ol li{
-        background: #b0c7e0;
-        color: rgb(59, 59, 151);
-    }
     #caption h1{
         text-align: center;
-        
     }
     #picture{
         display: inline-block;
@@ -35,8 +30,7 @@
                 <a href="/author">
                 <img src="/img/Me_at_NYUSH.jpg" width="400" height="400"></img>
                 </a>
-                <br>
-                click picture to learn more about author
+            <br>
             </div>
             <div id='intro'>
                 <p>
@@ -70,3 +64,19 @@
         </main>
     </body>
 </main>
+<script>
+    anime({
+        targets:"#picture",
+        translateY:-15,
+        translateX:450,
+        rotateZ:360,
+        easing: 'easeOutElastic(1, .8)',
+        //delay: anime.stagger(100)
+    });
+    anime({
+        targets:"#mylist",
+        translateX:350,
+        easing: 'easeOutElastic(1, .8)',
+        //delay: anime.stagger(100)
+    });
+</script>

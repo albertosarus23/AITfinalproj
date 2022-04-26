@@ -43,6 +43,10 @@ app.get('/auhtor',(req,res) => {
   res.render('author');
 });
 
+app.get('/game',(req,res) => {
+  res.render('game');
+});
+
 app.get('/photo',(req,res) => {
   res.render('pics');
 });

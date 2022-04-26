@@ -25,11 +25,11 @@ const ReviewSchema = new mongoose.Schema({
   alias: String
 });
 
-// const QuickCommentSchema = new mongoose.Schema({
-//   QuickComment: String
-// });
+const QuickCommentSchema = new mongoose.Schema({
+  quickComment: String
+});
   // db.reviews.insert({ workCommented: "Movementpractice", commentContext: "Like a shit", semester: "Fall", year: 2015, professor: "McTeacherson", review: "Now I can sort like pro!" });
 mongoose.model('Review', ReviewSchema);
-//mongoose.model('QuickReview', QuickCommentSchema);
+mongoose.model('QuickComment', QuickCommentSchema);
 
 mongoose.connect(dbconf);

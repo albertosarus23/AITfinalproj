@@ -24,9 +24,9 @@
 </style>
 <header>
     <h1>photos have power</h1>
-    <h3>here are some photography that I took all around the world <br>
-        I believe photos are way to tell a story <br>
-        a good photographer can use his/her works to express what he thinks <br>
+    <h3>here are some photos I took all around the world. <br>
+        I believe each photo has its own story <br>
+        a good photographer can use his/her works to express what he/she thinks <br>
     </h3>
     <h4>
         camera📷 I use: SONY A7MIII  Nikon F2  iPhone 12 pro
@@ -35,23 +35,46 @@
 <body>
     <script src="javascripts/photos.js"></script>
     <div class="wrapper">
-    <div class="box">
-        <img src="/img/Photos/pic1.jpeg" width="280" height="400">
-    </div>
-    <div class="box">
-        <img src="/img/Photos/pic3.jpeg" width="400" height="300">
-    </div>
-    <div class="box">
-        <img src="/img/Photos/pic2.jpeg" width="280" height="400">
-    </div>
-    <div class="box">
-        <img src="/img/Photos/pic4.jpeg" width="400" height="240">
-    </div>
-    <div class="box">
-        <img src="/img/Photos/pic5.jpeg" width="400" height="250">
-    </div>
-    <div class="box">
-        <img src="/img/Photos/pic8.jpeg" width="400" height="300">
-    </div>
-</div>   
+        <div class="box">
+            <div class="picture">
+                <img src="/img/Photos/pic1.jpeg" width="280" height="400">
+            </div>
+        </div>
+        <div class="box">
+            <div class="picture">
+                <img src="/img/Photos/pic3.jpeg" width="400" height="300">
+            </div>
+        </div>
+        <div class="box">
+            <div class="picture">
+                <img src="/img/Photos/pic2.jpeg" width="280" height="400">
+            </div>
+        </div>
+        <div class="box">
+            <div class="picture">
+                <img src="/img/Photos/pic4.jpeg" width="400" height="250">
+            </div>
+        </div>
+        <div class="box">
+            <div class="picture">
+                <img src="/img/Photos/pic5.jpeg" width="400" height="250">
+            </div>
+        </div>
+        <div class="box">
+            <div class="picture">
+                <img src="/img/Photos/pic8.jpeg" width="400" height="260">
+            </div>
+        </div>
+    </div>   
 </body>
+
+<script>
+    anime({
+  targets: '.box',
+  scale: [
+    {value: .1, easing: 'easeOutSine', duration: 500},
+    {value: 1, easing: 'easeInOutQuad', duration: 1200}
+  ],
+  delay: anime.stagger(200, {grid: [3, 2], from: 'first'})
+});
+</script>

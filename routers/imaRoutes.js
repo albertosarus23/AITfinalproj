@@ -1,22 +1,22 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const Review = mongoose.model('Review');
+const QuickComment = mongoose.model('QuickComment');
 const imarouter = express.Router();
 
 
 imarouter.get('/', (req, res) => {
     const queryObj = {};
-    if(Object.hasOwnProperty.call(req.query,'commentContext')){
-        if(req.query.commentContext!==''){
+    if(Object.hasOwnProperty.call(req.query,'quickComment')){
+        if(req.query.quickComment!==''){
             // find only the quick comments
-            // where only the commentcontext is filled
-            queryObj['commentContext']=req.query.commentContext;
+            // where only the quickComment is filled
+            queryObj['quickComment']=req.query.quickComment;
         }
     }
-    Review.find(queryObj,function(err,display = review,count){
+    QuickComment.find(queryObj,function(err,display = review,count){
         const data = display.map( r =>{
             return {
-                commentContext: r.commentContext,
+                quickComment: r.quickComment,
             };
         });
         res.render('ima',{data});
@@ -28,11 +28,11 @@ imarouter.get('/shooting_basket', (req, res) => {
 });
 
 imarouter.post('/', (req, res) => {
-    const {commentContext} = req.body;
-    const review = new Review({
-        commentContext
+    const {quickComment} = req.body;
+    const quickcomment = new QuickComment({
+        quickComment
     });
-    review.save((err,savedUser,count)=>{
+    quickcomment.save((err,savedUser,count)=>{
         res.redirect('/ima');
     });
 });
