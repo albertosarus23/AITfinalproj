@@ -4,14 +4,17 @@ require('./db');
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
-// const routes = require('./routes/index');
-// const list = require('./routes/list');
-// const listItem = require('./routes/list-item');
 
 const app = express();
 console.log("server starts");
 
 const publicPath = path.resolve(__dirname, "public");
+const sessionOptions = { 
+	secret: 'secret for signing session id', 
+	saveUninitialized: false, 
+	resave: false 
+};
+app.use(session(sessionOptions));
 app.use(express.static(publicPath));
 
 // view engine setup
@@ -19,14 +22,14 @@ app.use(express.static(publicPath));
 app.set('view engine', 'hbs');
 
 // enable sessions
-const sessionOptions = { 
-	secret: 'secret for signing session id', 
-	saveUninitialized: false, 
-	resave: false 
-};
 app.use(session(sessionOptions));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.render('error');
+  res.status(500).send('Something broke!')
+})
 
 const userRoutes = require('./routers/reviewsRoutes.js');
 const imaRoutes = require('./routers/imaRoutes.js');
@@ -59,6 +62,10 @@ app.get('/3dmodel',(req,res)=>{
   res.render('3dmodel');
 });
 
+app.get('/author',(req,res)=>{
+  res.render('author');
+});
+
 app.get('/csproj',(req,res)=>{
   res.render('csproj');
 });
@@ -67,5 +74,10 @@ app.get('/csproj',(req,res)=>{
 app.use('/reviews',userRoutes);
 
 app.use('/ima',imaRoutes);
+
+// going to wrong url
+app.get('/*',(req,res)=>{
+  res.render('error');
+});
 
 app.listen(process.env.PORT || 3000);
