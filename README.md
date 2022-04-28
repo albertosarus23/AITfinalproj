@@ -39,6 +39,11 @@ An Example User Review:
   });
 ```
 
+```javascript
+ const QuickCommentSchema = new mongoose.Schema({
+   quickComment: String
+ });
+```
 
 
 ## [Link to Commented First Draft Schema](db.js) 
