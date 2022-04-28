@@ -1,4 +1,10 @@
 const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
+
+const UserSchema = new mongoose.Schema({ });
+
+UserSchema.plugin(passportLocalMongoose);
+mongoose.model('User', UserSchema);
 // is the environment variable, NODE_ENV, set to PRODUCTION? 
 let dbconf;
 if (process.env.NODE_ENV === 'PRODUCTION') {

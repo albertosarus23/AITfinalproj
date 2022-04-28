@@ -6,6 +6,17 @@
          background-color: gainsboro;
     }
     .comment{
+        display: block;
+    }
+    .project{
+        display: inline;
+        padding: 20px;
+    }
+    .project_name{
+        display: inline-block;
+        padding: 5px;
+    }
+    .comment{
         display: inline;
     }
 </style>
@@ -22,15 +33,35 @@
     <h3>
         Here are some projects that I have done:
     </h3>
-    <h4>
-        Shoot the basket, an human-computer interaction project
-    </h4>
-    <div id='shooting_basket'>
+    <div class="project">
+        <div class="project_name">
+            <h4>
+            Shoot the basket, an human-computer interaction project
+            </h4>
+        </div>
+        <div id='shooting_basket'>
         <a href="ima/shooting_basket">
             <img class="alignnone wp-image-816" style="font-size: 16px;" 
             src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2020/12/DSC08405-169x300.jpg" alt="" width="185" height="328" />
         </a>
+        </div>
     </div>
+
+    <div class="project">
+        <div class="project_name">
+            <h4>
+            Interactive Stair, a responsive environment project
+            </h4>
+        </div>
+        <div id='interactive_stair'>
+        <a href="https://docs.google.com/presentation/d/1k0ZC1icxMopKN33ltj3BT2ZdEf3r9n4ct2H5X_96XyA/edit#slide=id.p">
+            <img class="alignnone wp-image-816" style="font-size: 16px;" 
+            src="https://wp.nyu.edu/artsampscience-albert_ruixiang/wp-content/uploads/sites/19730/2022/04/Screen-Shot-2022-04-25-at-9.11.42-PM.png" alt="" width="462" height="342" />
+        </a>
+        </div>
+    </div>
+    
+
     <div id='moving_step'>
 
     </div>
@@ -42,25 +73,25 @@
     <h3>
         comments
     </h3>
-    <div id="show the comments">
-        <table>
+    <div id="show_comments">
+        {{!-- <table>
             {{#each data}}
             <tr>
                 <td>{{ this.quickComment}}</td>
             </tr>
             {{/each}}
-        </table>
+        </table> --}}
     </div>
 
     <h3 id="leave_comment">
-        leave your comments <div class="comment">{{displaySubmitbtn}}</div> / 3
+        leave your comments <div class="comment">0</div> / 3
     </h3>
     <div id="ima_form">
-        <form method="POST" action="">
+        <form method="POST" action="/">
         <br>
-            Write anything: <input type="text" name ="quickComment", value="" class="quick">
+            Write anything: <input type="text" id="quickComment"name ="quickComment", value="" class="quick">
         </br>
-            <input type="submit">
+            <input id="submit_button" type="submit">
         </form>
     </div>
 </body>

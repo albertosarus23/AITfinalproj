@@ -1,14 +1,18 @@
 require('./db');
 
+const passport = require('passport');
+const mongoose = require('mongoose');
 //const passport = require('passport');
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
+const User = mongoose.model('User');
 
 const app = express();
 console.log("server starts");
 
 const publicPath = path.resolve(__dirname, "public");
+
 const sessionOptions = { 
 	secret: 'secret for signing session id', 
 	saveUninitialized: false, 
@@ -22,7 +26,6 @@ app.use(express.static(publicPath));
 app.set('view engine', 'hbs');
 
 // enable sessions
-app.use(session(sessionOptions));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use((err, req, res, next) => {
@@ -31,8 +34,8 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!')
 })
 
-const userRoutes = require('./routers/reviewsRoutes.js');
-const imaRoutes = require('./routers/imaRoutes.js');
+const userRoutes = require('./public/reviewsRoutes.js');
+const imaRoutes = require('./public/imaRoutes.js');
 
 app.get('/',(req,res) => {
     res.redirect('/home');
@@ -70,6 +73,13 @@ app.get('/csproj',(req,res)=>{
   res.render('csproj');
 });
 
+// app.get('/login', function(req, res) {
+//   res.render('login');
+// });
+
+// app.get('/register', function(req, res) {
+//   res.render('login');
+// });
 
 app.use('/reviews',userRoutes);
 

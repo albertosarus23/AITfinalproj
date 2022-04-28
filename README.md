@@ -92,20 +92,18 @@ Click once agian, the text will disappear.
     * Pull request
     * handle version history
   * And account has been made for testing; I'll email you the password
-* (1 points) Make the website indicate "Secure" instead of insecure
-  * use https instead of http
-* (3 points) Learn web design
+* (2 points) Learn web design
   * understand how to do web design so I can make my website much more nicer
   * understand the use of CSS and html
   * learn rendering
-* (3 points) anime.js for possible website animation
+* (2 points) anime.js for possible website animation
   * plain website is alwasys boring, so I would like to do some research on how to make it live with real-time effect
   * use a library anime.js and use its build-in function
-* (2 points) Client side form validation
-  * I am going to figure out if the user is just submitting a comment.
+* (3 points) Client side form validation using passport.js
+  * There are two types of comments in my web. One is quick comment, which the user doesn't have to login or register to leave. However, this type of comments are only allowed each to submit three times. In their session I will record
   * Maybe consider using external sources to handle these problem
 
-10 points total out of 8 required points 
+8 points total out of 8 required points 
 
 
 ## [Link to Initial Main Project File](app.js) 
