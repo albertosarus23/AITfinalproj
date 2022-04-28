@@ -48,7 +48,7 @@ An Example User Review:
 
 ## [Link to Commented First Draft Schema](db.js) 
 
-![Link](./db.js)
+[db.js](./db.js)
 
 
 ## Ajax features
@@ -57,12 +57,12 @@ click the empty area near the pictures I upload.
 Once clicked, the introduction on corresponding pictures will be shown and a text 
 will appear.
 Click once agian, the text will disappear.
-![Link](./public/javascripts/photos.js)
+[photos.js](./public/javascripts/photos.js)
 
 to the ima section
 the client side will request all the quick reviews and render them on that page
 the user can upload their quick review. The DOM will refresh and the new comment will also appear on the page
-![Link](./public/javascripts/ima.js)
+[ima.js](./public/javascripts/ima.js)
 
 ## Wireframes
 
