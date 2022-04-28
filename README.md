@@ -11,7 +11,7 @@ The other feature of the website should contain contact information, users can l
 
 ## Data Model
 
-Home page contains links to other media sites and contact page
+Home page contains links to other media sites and review page
 
 * media sites includes 
   * Interactive media arts work
@@ -20,7 +20,7 @@ Home page contains links to other media sites and contact page
   * Coding works (GitHub repository)
   * Papers
 
-* contact page includes
+* review page(has to be login first) includes
   * alias
   * Work to be commented
   * time commented(System time)
@@ -28,7 +28,7 @@ Home page contains links to other media sites and contact page
   * send button
 
 
-An Example User:
+An Example User Review:
 
 ```javascript
   const ReviewSchema = new mongoose.Schema({
@@ -47,12 +47,17 @@ An Example User:
 
 
 ## Ajax features
-click to the music section.
+click to the photo section.
 click the empty area near the pictures I upload.
 Once clicked, the introduction on corresponding pictures will be shown and a text 
 will appear.
 Click once agian, the text will disappear.
 ![Link](./public/javascripts/photos.js)
+
+to the ima section
+the client side will request all the quick reviews and render them on that page
+the user can upload their quick review. The DOM will refresh and the new comment will also appear on the page
+![Link](./public/javascripts/ima.js)
 
 ## Wireframes
 
@@ -78,9 +83,8 @@ Click once agian, the text will disappear.
 
 1. as a user, I can browse all the works published by the owner with the site
 2. as a user, I can comment on works published by owner on the site
-3. as a user, I can leave my email address along with my comments
-4. as a owner, I can read all information leave by the viewer
-5. as a owner, I can upload new posts
+3. as a user, I can leave quick comment on the ima works that doesn't need login and the limits per user is three.
+4. as a user, I can click the photos on the photo page to see the introduction
 
 ## Research Topics
 
@@ -91,7 +95,6 @@ Click once agian, the text will disappear.
     * Merge
     * Pull request
     * handle version history
-  * And account has been made for testing; I'll email you the password
 * (2 points) Learn web design
   * understand how to do web design so I can make my website much more nicer
   * understand the use of CSS and html
@@ -125,8 +128,6 @@ Click once agian, the text will disappear.
 
 ## Annotations / References Used
 
-(__TODO__: list any tutorials/references/etc. that you've based your code off of_)
-
-1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
-2. [tutorial on vue.js](https://vuejs.org/v2/guide/) - (add link to source code that was based on this)
+1. [passport.js authentication docs](http://passportjs.org/docs) 
+2.  [https://animejs.com/documentation/#domNode](http://passportjs.org/docs) 
 
