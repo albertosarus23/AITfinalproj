@@ -21,11 +21,11 @@
     }
 </style>
 <header>
-    <h1>Interactive Media arts! Yessssss!</h1>
+    <h1>Interactive Media arts!</h1>
 </header>
 
 <body>
-    <script src="/javascripts/ima.js"></script>
+    {{!-- <script src="/javascripts/ima.js"></script> --}}
     Interactive media art is what I really love. <br>
     I think it is the new format of art of the current era <br>
     I spent significant time on it and most of my proud works belongs to this category.
@@ -70,28 +70,4 @@
     </div>
 
     <br>
-    <h3>
-        comments
-    </h3>
-    <div id="show_comments">
-        {{!-- <table>
-            {{#each data}}
-            <tr>
-                <td>{{ this.quickComment}}</td>
-            </tr>
-            {{/each}}
-        </table> --}}
-    </div>
-
-    <h3 id="leave_comment">
-        leave your comments <div class="comment">0</div> / 3
-    </h3>
-    <div id="ima_form">
-        <form method="POST" action="/">
-        <br>
-            Write anything: <input type="text" id="quickComment"name ="quickComment", value="" class="quick">
-        </br>
-            <input id="submit_button" type="submit">
-        </form>
-    </div>
 </body>
